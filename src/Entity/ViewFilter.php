@@ -13,8 +13,8 @@ use Drupal\views\Plugin\views\display\DisplayPluginBase;
  * Defines the view filter configuration entity.
  *
  * @ContentEntityType(
- *   id = "views_save_filter",
- *   base_table = "views_save_filter",
+ *   id = "views_save",
+ *   base_table = "views_save",
  *   label = @Translation("View filter"),
  *   label_collection = @Translation("Views Filters"),
  *   label_singular = @Translation("view filter"),
@@ -37,8 +37,8 @@ use Drupal\views\Plugin\views\display\DisplayPluginBase;
  *     "canonical" = "/admin/structure/views-filters",
  *     "add-page" = "/admin/structure/views-filters/new",
  *     "add-form" = "/admin/structure/views-filters/{view}/{display_id}/add",
- *     "edit-form" = "/admin/structure/views-filters/{view}/{display_id}/{views_save_filter}/edit",
- *     "delete-form" = "/admin/structure/views-filters/{view}/{display_id}/{views_save_filter}/delete",
+ *     "edit-form" = "/admin/structure/views-filters/{view}/{display_id}/{views_save}/edit",
+ *     "delete-form" = "/admin/structure/views-filters/{view}/{display_id}/{views_save}/delete",
  *   },
  *   entity_keys = {
  *     "id" = "id",
@@ -244,7 +244,7 @@ class ViewFilter extends ContentEntityBase implements ViewFilterInterface {
       ->getUrl()
       ->setOption('query', $this->getFilters())
       ->setAbsolute();
-    \Drupal::moduleHandler()->alter('views_save_filter_url', $url, $this);
+    \Drupal::moduleHandler()->alter('views_save_url', $url, $this);
     return $url;
   }
 
@@ -274,7 +274,7 @@ class ViewFilter extends ContentEntityBase implements ViewFilterInterface {
       throw new \LogicException(sprintf('The view name, ID of its display and UUID of a user must be set.'));
     }
 
-    \Drupal::moduleHandler()->alter('views_save_filter_hash', $filters, $this);
+    \Drupal::moduleHandler()->alter('views_save_hash', $filters, $this);
     ksort($filters);
     array_walk($filters, function(&$value) {
       if (is_array($value)) {

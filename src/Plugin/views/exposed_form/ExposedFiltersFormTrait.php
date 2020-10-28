@@ -25,7 +25,7 @@ trait ExposedFiltersFormTrait {
     $form['#prefix'] = '<div class="view-filters--container">' . $this->renderer->renderPlain($markup);
     $form['#suffix'] = '</div>';
 
-    if ($route_name === ModalFormLink::CONTROLLER_ROUTE || strpos($route_name, 'entity.views_save_filter.') === 0) {
+    if ($route_name === ModalFormLink::CONTROLLER_ROUTE || strpos($route_name, 'entity.views_save.') === 0) {
       // Hide the "Apply" button. Removal is not allowed. Otherwise, the
       // values that are currently selected may be incorrectly treated.
       $form['actions']['submit']['#printed'] = TRUE;

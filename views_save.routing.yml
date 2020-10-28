@@ -1,12 +1,12 @@
-entity.views_save_filter.canonical:
+entity.views_save.canonical:
   path: '/admin/structure/views-filters'
   defaults:
     _title: 'Views filters'
-    _entity_list: 'views_save_filter'
+    _entity_list: 'views_save'
   requirements:
     _permission: 'administer all views filters'
 
-entity.views_save_filter.add_page:
+entity.views_save.add_page:
   path: '/admin/structure/views-filters/new'
   defaults:
     _title: 'Create filter'
@@ -14,7 +14,7 @@ entity.views_save_filter.add_page:
   requirements:
     _permission: 'use own views filters'
 
-entity.views_save_filter.add_form:
+entity.views_save.add_form:
   path: '/admin/structure/views-filters/{view}/{display_id}/add'
   options:
     parameters:
@@ -23,27 +23,27 @@ entity.views_save_filter.add_form:
         type: entity:view
   defaults:
     _title: 'Save filter'
-    _entity_form: 'views_save_filter.add'
+    _entity_form: 'views_save.add'
   requirements:
     _permission: 'use own views filters'
 
-entity.views_save_filter.edit_form:
-  path: '/admin/structure/views-filters/{view}/{display_id}/{views_save_filter}/edit'
+entity.views_save.edit_form:
+  path: '/admin/structure/views-filters/{view}/{display_id}/{views_save}/edit'
   options:
     parameters:
       view:
         tempstore: TRUE
         type: entity:view
   defaults:
-    _entity_form: 'views_save_filter.edit'
+    _entity_form: 'views_save.edit'
     _title_callback: '\Drupal\Core\Entity\Controller\EntityController::title'
   requirements:
     _permission: 'use own views filters'
 
-entity.views_save_filter.delete_form:
-  path: '/admin/structure/views-filters/{view}/{display_id}/{views_save_filter}/delete'
+entity.views_save.delete_form:
+  path: '/admin/structure/views-filters/{view}/{display_id}/{views_save}/delete'
   defaults:
-    _entity_form: 'views_save_filter.delete'
+    _entity_form: 'views_save.delete'
     _title: 'Delete filter'
   requirements:
     _permission: 'use own views filters'

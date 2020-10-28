@@ -39,12 +39,12 @@ class ViewFilterSelectForm extends FormBase implements ModalFormAccessInterface 
   /**
    * The route name for creating a saved view.
    */
-  const SELECT_VIEW_ROUTE = 'entity.views_save_filter.add_page';
+  const SELECT_VIEW_ROUTE = 'entity.views_save.add_page';
 
   /**
    * The route name for the saving a view.
    */
-  const ENTITY_FORM_ROUTE = 'entity.views_save_filter.add_form';
+  const ENTITY_FORM_ROUTE = 'entity.views_save.add_form';
 
   /**
    * The ID of the form container HTML element.

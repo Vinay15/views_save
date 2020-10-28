@@ -4,7 +4,7 @@ package: Views
 type: module
 core_version_requirement: ^8 || ^9
 
-configure: entity.views_save_filter.canonical
+configure: entity.views_save.canonical
 
 dependencies:
   - modal_form:modal_form

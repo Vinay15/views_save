@@ -48,7 +48,7 @@ class ViewFiltersMarkup {
    */
   protected $entityIdForUuidExchanger;
   /**
-   * A storage of the "views_save_filter" entities.
+   * A storage of the "views_save" entities.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
@@ -83,7 +83,7 @@ class ViewFiltersMarkup {
     $this->messenger = $messenger;
     $this->currentUser = $current_user;
     $this->requestStack = $request_stack;
-    $this->viewFilterStorage = $entity_type_manager->getStorage('views_save_filter');
+    $this->viewFilterStorage = $entity_type_manager->getStorage('views_save');
     $this->entityIdForUuidExchanger = $entity_id_for_uuid_exchanger;
     $this->mainContentBlockCssSelector = $main_content_block_css_selector;
   }
@@ -198,10 +198,10 @@ class ViewFiltersMarkup {
         'url' => $url->setOption('query', $url->getOption('query') + ['hide-save-filter-button' => TRUE]),
         'title' => $filter->label(),
         'is_active' => static::getQueryString($url->toUriString()) === $request_query,
-        'delete' => new Url('entity.views_save_filter.delete_form', [
+        'delete' => new Url('entity.views_save.delete_form', [
           'view' => $view_id,
           'display_id' => $display_id,
-          'views_save_filter' => $filter_id,
+          'views_save' => $filter_id,
         ]),
       ];
     }

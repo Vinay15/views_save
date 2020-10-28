@@ -132,7 +132,7 @@ class ViewFilterForm extends EntityForm {
         ->uuid()
     );
 
-    $form['#action'] = $this->urlGenerator->generate("entity.views_save_filter.{$this->operation}_form", [
+    $form['#action'] = $this->urlGenerator->generate("entity.views_save.{$this->operation}_form", [
       'display_id' => $this->displayId,
       $this->view->getEntityTypeId() => $this->viewId,
       $this->entity->getEntityTypeId() => $this->entity->id(),
