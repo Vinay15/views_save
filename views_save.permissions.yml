@@ -1,0 +1,6 @@
+administer all views filters:
+  title: 'Administer all views filters'
+  restrict access: true
+
+use own views filters:
+  title: 'Create, edit and use own views filters'

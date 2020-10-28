@@ -1,0 +1,5 @@
+entity.views_save_filter.new:
+  title: 'Create filter'
+  route_name: entity.views_save_filter.add_page
+  appears_on:
+    - entity.views_save_filter.canonical

@@ -1,0 +1,11 @@
+name: 'Views Save'
+description: 'Enables users to save their current exposed filter settings for views.'
+package: Views
+type: module
+core_version_requirement: ^8 || ^9
+
+configure: entity.views_save_filter.canonical
+
+dependencies:
+  - modal_form:modal_form
+  - drupal:views

@@ -1,0 +1,5 @@
+entity.views_save_filter.canonical:
+  title: 'Views filters'
+  parent: system.admin_structure
+  route_name: entity.views_save_filter.canonical
+  description: 'Create and manage views filters.'

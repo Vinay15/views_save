@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Views Save.
+ */
+
+use Drupal\views_save\Plugin\views\exposed_form\Basic;
+use Drupal\views_save\Plugin\views\exposed_form\BetterExposedFilters;
+use Drupal\views_save\Plugin\views\exposed_form\InputRequired;
+
+/**
+ * Implements hook_views_plugins_exposed_form_alter().
+ *
+ * @internal
+ */
+function views_save_views_plugins_exposed_form_alter(array &$plugins) {
+
+  $plugins['input_required'] = array_merge($plugins['input_required'], [
+    'class' => InputRequired::class,
+    'provider' => 'views_save',
+  ]);
+
+  $plugins['basic'] = array_merge($plugins['basic'], [
+    'class' => Basic::class,
+    'provider' => 'views_save',
+  ]);
+
+  // Handle the plugin provided by "better_exposed_filters" module if exist.
+  if (isset($plugins['bef'])) {
+    $plugins['bef'] = array_merge($plugins['bef'], [
+      'class' => BetterExposedFilters::class,
+      'provider' => 'views_save',
+    ]);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * @internal
+ */
+function views_save_theme() {
+  $info = [];
+
+  $info['views_save__filters_list'] = [
+    'variables' => [
+      'filters' => [],
+      'view_id' => '',
+      'display_id' => '',
+    ],
+  ];
+
+  return $info;
+}

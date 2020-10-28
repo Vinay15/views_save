@@ -1,0 +1,19 @@
+{
+  "name": "drupal/views_save",
+  "description": "Enables users to save their current exposed filter settings for views.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Sergii Bondarenko",
+      "email": "sb@firstvector.org"
+    },
+    {
+      "name": "Thomas Seidl",
+      "email": "remus@gmx.net"
+    }
+  ],
+  "require": {
+    "drupal/modal_form": "1.x-dev"
+  }
+}

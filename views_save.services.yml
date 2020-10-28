@@ -1,0 +1,17 @@
+parameters:
+  main_content_block_css_selector: '#block-main-page-content'
+services:
+  views_save.entity_id_uuid_exchanger:
+    class: Drupal\views_save\EntityIdForUuidExchanger
+    arguments:
+      - '@database'
+      - '@entity_type.manager'
+  views_save.view_filters_markup:
+    class: Drupal\views_save\ViewFiltersMarkup
+    arguments:
+      - '@messenger'
+      - '@current_user'
+      - '@request_stack'
+      - '@entity_type.manager'
+      - '@views_save.entity_id_uuid_exchanger'
+      - '%main_content_block_css_selector%'

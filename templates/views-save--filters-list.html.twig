@@ -1,0 +1,14 @@
+<div class="filters-list" id="view_filters__{{ view_id }}">
+  {% if filters is not empty %}
+    <h3>{{ 'Saved filters'|t }}</h3>
+
+    <ul>
+      {% for filter in filters %}
+        <li>
+          <a href="{{ filter.url }}" class="filter-link {{ filter.is_active ? 'active' }}">{{ filter.title }}</a>
+          <a href="{{ filter.delete }}" class="use-ajax filter-remove" data-dialog-type="modal">{{ 'Delete'|t }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
