@@ -6,12 +6,12 @@ use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\OpenModalDialogCommand;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\HtmlEntityFormController;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatch;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\layout_builder\Controller\LayoutBuilderHtmlEntityFormController;
 use Drupal\modal_form\Element\ModalFormLink;
 use Drupal\modal_form\Form\ModalFormAccessInterface;
 use Drupal\views\ViewEntityInterface;
@@ -87,13 +87,13 @@ class ViewFilterSelectForm extends FormBase implements ModalFormAccessInterface 
    */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
-//    HtmlEntityFormController $form_controller,
+    LayoutBuilderHtmlEntityFormController $form_controller,
     RouteProviderInterface $route_provider,
     RequestStack $request_stack,
     AccountInterface $current_user
   ) {
     $this->entityTypeManager = $entity_type_manager;
-//    $this->formController = $form_controller;
+    $this->formController = $form_controller;
     $this->currentRequest = $request_stack->getCurrentRequest();
     $this->routeProvider = $route_provider;
     $this->requestStack = $request_stack;
@@ -106,7 +106,7 @@ class ViewFilterSelectForm extends FormBase implements ModalFormAccessInterface 
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
-//      $container->get('controller.entity_form'),
+      $container->get('controller.entity_form'),
       $container->get('router.route_provider'),
       $container->get('request_stack'),
       $container->get('current_user')
@@ -312,8 +312,7 @@ class ViewFilterSelectForm extends FormBase implements ModalFormAccessInterface 
 
     return [
       (string) $route->getDefault('_title'),
-//      $this->formController->getContentResult($request, RouteMatch::createFromRequest($request)),
-      \Drupal::service('controller.entity_form')->getContentResult($request, RouteMatch::createFromRequest($request)),
+      $this->formController->getContentResult($request, RouteMatch::createFromRequest($request)),
     ];
   }
 
