@@ -5,8 +5,8 @@ namespace Drupal\views_save\Form;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\EventSubscriber\AjaxResponseSubscriber;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\ConfirmFormHelper;
@@ -29,6 +29,7 @@ class ViewFilterDeleteForm extends ContentEntityDeleteForm {
    * @var \Symfony\Component\HttpFoundation\Request
    */
   protected $currentRequest;
+
   /**
    * An instance of the "MODULE.view_filters_markup" service.
    *
@@ -40,13 +41,13 @@ class ViewFilterDeleteForm extends ContentEntityDeleteForm {
    * {@inheritdoc}
    */
   public function __construct(
-    EntityManagerInterface $entity_manager,
+    EntityTypeManagerInterface $entity_type_manager,
     EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL,
     TimeInterface $time = NULL,
     RequestStack $request_stack,
     ViewFiltersMarkup $view_filters_markup
   ) {
-    parent::__construct($entity_manager, $entity_type_bundle_info, $time);
+    parent::__construct($entity_type_manager, $entity_type_bundle_info, $time);
 
     $this->requestStack = $request_stack;
     $this->currentRequest = $this->requestStack->getCurrentRequest();
@@ -58,7 +59,7 @@ class ViewFilterDeleteForm extends ContentEntityDeleteForm {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
       $container->get('request_stack'),

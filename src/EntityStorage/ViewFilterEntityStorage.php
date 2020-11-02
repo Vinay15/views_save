@@ -4,8 +4,8 @@ namespace Drupal\views_save\EntityStorage;
 
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -38,13 +38,13 @@ class ViewFilterEntityStorage extends SqlContentEntityStorage {
   public function __construct(
     EntityTypeInterface $entity_type,
     Connection $database,
-    EntityManagerInterface $entity_manager,
+    EntityFieldManagerInterface $entity_field_manager,
     CacheBackendInterface $cache,
     LanguageManagerInterface $language_manager,
     AccountProxyInterface $current_user,
     EntityIdForUuidExchanger $entity_id_for_uuid_exchanger
   ) {
-    parent::__construct($entity_type, $database, $entity_manager, $cache, $language_manager);
+    parent::__construct($entity_type, $database, $entity_field_manager, $cache, $language_manager);
 
     $this->currentUser = $current_user;
     $this->entityIdForUuidExchanger = $entity_id_for_uuid_exchanger;
@@ -57,7 +57,7 @@ class ViewFilterEntityStorage extends SqlContentEntityStorage {
     return new static(
       $entity_type,
       $container->get('database'),
-      $container->get('entity.manager'),
+      $container->get('entity_field.manager'),
       $container->get('cache.entity'),
       $container->get('language_manager'),
       $container->get('current_user'),
